@@ -1,0 +1,9 @@
+Q1: What happens if users choose "Cancel"?
+    Nếu người dùng chọn "Cancel", showConfirmDialog() trả về 2 (CLOSED_OPTION),
+    chương trình hiển thị "You've chosen: No".
+
+Q2: How to customize options?
+
+    Để tuỳ chỉnh các nút, dùng JOptionPane.showOptionDialog() thay vì 
+    showConfirmDialog(). Nó cho phép truyền vào mảng String tuỳ chỉnh 
+    làm nhãn nút, ví dụ {"Yes", "No"} hoặc {"I do", "I don't"}.    
