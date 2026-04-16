@@ -75,4 +75,16 @@ public class DigitalVideoDisc {
         this.length = length;
         this.cost = cost;
     }
+
+    public boolean isMatch(String title) {
+        if (title == null) {
+            return false;
+        }
+        return this.title != null && this.title.equalsIgnoreCase(title.trim());
+    }
+
+    @Override
+    public String toString() {
+        return "DVD - " + title + " - " + category + " - " + director + " - " + length + ": " + cost + " $";
+    }
 }
