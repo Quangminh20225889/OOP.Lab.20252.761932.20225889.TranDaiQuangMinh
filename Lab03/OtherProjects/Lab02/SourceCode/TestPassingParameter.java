@@ -1,4 +1,4 @@
-package Lab02.SourceCode;
+package Lab03.OtherProjects.Lab02.SourceCode;
 
 public class TestPassingParameter {
     public static void main(String[] args) {
