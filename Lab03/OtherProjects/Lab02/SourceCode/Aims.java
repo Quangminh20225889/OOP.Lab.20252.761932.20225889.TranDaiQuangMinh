@@ -1,10 +1,7 @@
-
 package Lab03.OtherProjects.Lab02.SourceCode;
 
 public class Aims {
     public static void main(String[] args) {
-        Cart anOrder = new Cart();
-
         DigitalVideoDisc dvd1 = new DigitalVideoDisc(
                 "The Lion King",
                 "Animation",
@@ -27,33 +24,9 @@ public class Aims {
                 18.99f
         );
 
-        DigitalVideoDisc dvd4 = new DigitalVideoDisc(
-                "Frozen",
-                "Animation",
-                "Chris Buck",
-                102,
-                21.50f
-        );
-
-        DigitalVideoDisc dvd5 = new DigitalVideoDisc(
-                "Inception",
-                "Sci-Fi",
-                "Christopher Nolan",
-                148,
-                30.00f
-        );
-
-        // Test add 1 DVD
-        anOrder.addDigitalVideoDisc(dvd1);
-
-        // Test add 2 DVDs
-        anOrder.addDigitalVideoDisc(dvd2, dvd3);
-
-        // Test add array of DVDs
-        DigitalVideoDisc[] dvdList = {dvd4, dvd5};
-        anOrder.addDigitalVideoDisc(dvdList);
-
-        System.out.println("Total cost is: " + anOrder.totalCost());
-        
+        System.out.println("DVD 1 id: " + dvd1.getId());
+        System.out.println("DVD 2 id: " + dvd2.getId());
+        System.out.println("DVD 3 id: " + dvd3.getId());
+        System.out.println("Total DVDs created: " + DigitalVideoDisc.getNbDigitalVideoDiscs());
     }
 }
