@@ -1,0 +1,8 @@
+Java là ngôn ngữ truyền tham số theo giá trị (pass by value), không phải pass by reference.
+
+Khi truyền đối tượng vào hàm, Java truyền bản sao của tham chiếu đến đối tượng, chứ không truyền trực tiếp đối tượng gốc.
+Vì vậy, khi gọi swap(jungleDVD, cinderellaDVD), việc hoán đổi chỉ xảy ra với các bản sao tham chiếu bên trong hàm, nên hai
+ biến ban đầu bên ngoài hàm không đổi.
+
+Tuy nhiên, khi gọi changeTitle(jungleDVD, cinderellaDVD.getTitle()), tham số dvd vẫn đang tham chiếu tới đúng đối tượng 
+jungleDVD ban đầu, nên khi thay đổi thuộc tính title của đối tượng đó thì đối tượng gốc cũng bị thay đổi.
