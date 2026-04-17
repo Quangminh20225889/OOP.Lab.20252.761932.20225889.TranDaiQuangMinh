@@ -2,31 +2,24 @@ package Lab03.OtherProjects.Lab02.SourceCode;
 
 public class Aims {
     public static void main(String[] args) {
-        DigitalVideoDisc dvd1 = new DigitalVideoDisc(
-                "The Lion King",
-                "Animation",
-                "Roger Allers",
-                87,
-                19.95f
-        );
-
-        DigitalVideoDisc dvd2 = new DigitalVideoDisc(
-                "Star Wars",
-                "Science Fiction",
-                "George Lucas",
-                87,
-                24.95f
-        );
-
-        DigitalVideoDisc dvd3 = new DigitalVideoDisc(
-                "Aladin",
-                "Animation",
-                18.99f
-        );
-
-        System.out.println("DVD 1 id: " + dvd1.getId());
-        System.out.println("DVD 2 id: " + dvd2.getId());
-        System.out.println("DVD 3 id: " + dvd3.getId());
-        System.out.println("Total DVDs created: " + DigitalVideoDisc.getNbDigitalVideoDiscs());
+        // Tạo giỏ hàng mới
+        Cart anOrder = new Cart();
+        // Tạo và thêm các DVD vào giỏ
+        DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King",
+                "Animation", "Roger Allers", 87, 19.95f);
+        anOrder.addDigitalVideoDisc(dvd1);
+        DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars",
+                "Science Fiction", "George Lucas", 87, 24.95f);
+        anOrder.addDigitalVideoDisc(dvd2);
+        DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin",
+                "Animation", 18.99f);
+        anOrder.addDigitalVideoDisc(dvd3);
+        // In tổng tiền
+        System.out.println("Total Cost is: ");
+        System.out.println(anOrder.totalCost());
+        // Test xóa DVD
+        anOrder.removeDigitalVideoDisc(dvd2);
+        System.out.println("Total Cost after removal: ");
+        System.out.println(anOrder.totalCost());
     }
 }

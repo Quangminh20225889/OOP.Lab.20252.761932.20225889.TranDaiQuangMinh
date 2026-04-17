@@ -1,4 +1,4 @@
-package Lab03.OtherProjects.Lab02.SourceCode;
+package Lab03.AimsProject.SourceCode;
 
 public class CartTest {
     public static void main(String[] args) {
