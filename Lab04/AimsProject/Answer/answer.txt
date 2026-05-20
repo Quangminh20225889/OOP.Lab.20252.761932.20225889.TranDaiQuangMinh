@@ -1,0 +1,13 @@
+Question: Which classes are aggregates of other classes?
+
+Answer:
+The Cart class is an aggregate of Media objects because it contains an ArrayList<Media>.
+The Store class is also an aggregate of Media objects because it contains an ArrayList<Media>.
+The CompactDisc class is an aggregate of Track objects because it contains an ArrayList<Track>.
+The Book class can also be considered an aggregate of authors because it contains an ArrayList<String> authors.
+
+All whole classes initialize their parts properly:
+- Cart initializes itemsOrdered as a new ArrayList<Media>.
+- Store initializes itemsInStore as a new ArrayList<Media>.
+- CompactDisc initializes tracks as a new ArrayList<Track>.
+- Book initializes authors as a new ArrayList<String>.

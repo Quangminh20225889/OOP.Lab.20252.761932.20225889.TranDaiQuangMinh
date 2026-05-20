@@ -1,0 +1,8 @@
+- If you create a constructor method to build a DVD by title then create a
+constructor method to build a DVD by category. Does JAVA allow you to do
+this ?
+(Nếu bạn tạo một phương thức constructor để khởi tạo một đối tượng DVD
+bằng tiêu đề, sau đó tạo một phương thức constructor để khởi tạo một đối
+tượng DVD bằng thể loại. Java có cho phép bạn làm điều này không ?)
+→ Có . Java cho phép thực hiện thông qua method overloading (nạp chồng
+phương thức).
