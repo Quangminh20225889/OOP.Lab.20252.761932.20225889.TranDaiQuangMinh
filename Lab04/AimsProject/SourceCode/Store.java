@@ -9,6 +9,10 @@ public class Store {
     private ArrayList<Media> itemsInStore =
             new ArrayList<Media>();
 
+    public ArrayList<Media> getItemsInStore() {
+        return itemsInStore;
+    }
+
     // Add media
     public void addMedia(Media media) {
 

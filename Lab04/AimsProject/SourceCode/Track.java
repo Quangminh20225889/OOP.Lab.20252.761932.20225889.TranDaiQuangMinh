@@ -1,5 +1,7 @@
 package Lab04.AimsProject.SourceCode;
 
+import Lab04.AimsProject.SourceCode.Exception.PlayerException;
+
 public class Track implements Playable {
 
     private String title;
@@ -8,8 +10,8 @@ public class Track implements Playable {
     // Constructor
     public Track(String title, int length) {
 
-        this.title = title;
-        this.length = length;
+        setTitle(title);
+        setLength(length);
     }
 
     // Getter
@@ -21,8 +23,24 @@ public class Track implements Playable {
         return length;
     }
 
+    public void setTitle(String title) {
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalArgumentException("Track title must not be empty.");
+        }
+
+        this.title = title;
+    }
+
+    public void setLength(int length) {
+        if (length < 0) {
+            throw new IllegalArgumentException("Track length must be non-negative.");
+        }
+
+        this.length = length;
+    }
+
     @Override
-    public void play() {
+    public void play() throws PlayerException {
 
         if (this.length > 0) {
 
@@ -31,7 +49,8 @@ public class Track implements Playable {
 
         } else {
 
-            System.out.println("ERROR: Track length is non-positive");
+            System.err.println("ERROR: Track length is non-positive");
+            throw new PlayerException("ERROR: Track length is non-positive!");
         }
     }
 
@@ -49,6 +68,7 @@ public class Track implements Playable {
         Track other = (Track) obj;
 
         return this.length == other.length
+                && this.title != null
                 && this.title.equalsIgnoreCase(other.title);
     }
 }

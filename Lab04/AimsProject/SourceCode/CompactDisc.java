@@ -2,6 +2,8 @@ package Lab04.AimsProject.SourceCode;
 
 import java.util.ArrayList;
 
+import Lab04.AimsProject.SourceCode.Exception.PlayerException;
+
 public class CompactDisc extends Disc implements Playable {
 
     private String artist;
@@ -54,16 +56,21 @@ public class CompactDisc extends Disc implements Playable {
     }
 
     @Override
-    public void play() {
+    public void play() throws PlayerException {
         if (this.getLength() > 0) {
             System.out.println("Playing CD: " + this.getTitle());
             System.out.println("CD length: " + this.getLength());
 
             for (Track track : tracks) {
-                track.play();
+                try {
+                    track.play();
+                } catch (PlayerException exception) {
+                    throw exception;
+                }
             }
         } else {
-            System.out.println("ERROR: CD length is non-positive");
+            System.err.println("ERROR: CD length is non-positive");
+            throw new PlayerException("ERROR: CD length is non-positive!");
         }
     }
 

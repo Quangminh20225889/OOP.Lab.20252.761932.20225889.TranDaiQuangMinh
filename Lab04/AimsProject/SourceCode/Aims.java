@@ -2,6 +2,8 @@ package Lab04.AimsProject.SourceCode;
 
 import java.util.Scanner;
 
+import Lab04.AimsProject.SourceCode.Exception.PlayerException;
+
 public class Aims {
 
     private static Scanner scanner = new Scanner(System.in);
@@ -16,8 +18,7 @@ public class Aims {
 
         do {
             showMenu();
-            choice = scanner.nextInt();
-            scanner.nextLine();
+            choice = readInt();
 
             switch (choice) {
                 case 1:
@@ -68,8 +69,7 @@ public class Aims {
             store.printStore();
             storeMenu();
 
-            choice = scanner.nextInt();
-            scanner.nextLine();
+            choice = readInt();
 
             switch (choice) {
                 case 1:
@@ -120,8 +120,7 @@ public class Aims {
 
         mediaDetailsMenu();
 
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        int choice = readInt();
 
         switch (choice) {
             case 1:
@@ -177,7 +176,13 @@ public class Aims {
 
     public static void playMedia(Media media) {
         if (media instanceof Playable) {
-            ((Playable) media).play();
+            try {
+                ((Playable) media).play();
+            } catch (PlayerException exception) {
+                System.err.println("PlayerException message: " + exception.getMessage());
+                System.err.println("PlayerException toString: " + exception.toString());
+                exception.printStackTrace();
+            }
         } else {
             System.out.println("This media cannot be played.");
         }
@@ -188,8 +193,7 @@ public class Aims {
         System.out.println("2. Remove media");
         System.out.print("Choose: ");
 
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        int choice = readInt();
 
         if (choice == 1) {
             System.out.print("Title: ");
@@ -202,14 +206,17 @@ public class Aims {
             String director = scanner.nextLine();
 
             System.out.print("Length: ");
-            int length = scanner.nextInt();
+            int length = readInt();
 
             System.out.print("Cost: ");
-            float cost = scanner.nextFloat();
-            scanner.nextLine();
+            float cost = readFloat();
 
-            DigitalVideoDisc dvd = new DigitalVideoDisc(title, category, director, length, cost);
-            store.addMedia(dvd);
+            try {
+                DigitalVideoDisc dvd = new DigitalVideoDisc(title, category, director, length, cost);
+                store.addMedia(dvd);
+            } catch (IllegalArgumentException exception) {
+                System.out.println("Cannot add media: " + exception.getMessage());
+            }
 
         } else if (choice == 2) {
             System.out.print("Enter title to remove: ");
@@ -232,8 +239,7 @@ public class Aims {
             cart.print();
             cartMenu();
 
-            choice = scanner.nextInt();
-            scanner.nextLine();
+            choice = readInt();
 
             switch (choice) {
                 case 1:
@@ -278,13 +284,11 @@ public class Aims {
         System.out.println("2. Filter by title");
         System.out.print("Choose: ");
 
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        int choice = readInt();
 
         if (choice == 1) {
             System.out.print("Enter id: ");
-            int id = scanner.nextInt();
-            scanner.nextLine();
+            int id = readInt();
             cart.searchById(id);
         } else if (choice == 2) {
             System.out.print("Enter title: ");
@@ -298,8 +302,7 @@ public class Aims {
         System.out.println("2. Sort by cost");
         System.out.print("Choose: ");
 
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        int choice = readInt();
 
         if (choice == 1) {
             cart.sortByTitleCost();
@@ -339,5 +342,25 @@ public class Aims {
     public static void placeOrder() {
         System.out.println("Order has been created.");
         cart.clearCart();
+    }
+
+    private static int readInt() {
+        while (true) {
+            try {
+                return Integer.parseInt(scanner.nextLine().trim());
+            } catch (NumberFormatException exception) {
+                System.out.print("Invalid integer. Please enter again: ");
+            }
+        }
+    }
+
+    private static float readFloat() {
+        while (true) {
+            try {
+                return Float.parseFloat(scanner.nextLine().trim());
+            } catch (NumberFormatException exception) {
+                System.out.print("Invalid number. Please enter again: ");
+            }
+        }
     }
 }

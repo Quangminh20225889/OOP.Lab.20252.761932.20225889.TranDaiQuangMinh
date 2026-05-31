@@ -16,8 +16,8 @@ public class Disc extends Media {
     ) {
         super(id, title, category, cost);
 
-        this.director = director;
-        this.length = length;
+        setDirector(director);
+        setLength(length);
     }
 
     // Getter
@@ -27,5 +27,17 @@ public class Disc extends Media {
 
     public String getDirector() {
         return director;
+    }
+
+    public void setLength(int length) {
+        if (length < 0) {
+            throw new IllegalArgumentException("Disc length must be non-negative.");
+        }
+
+        this.length = length;
+    }
+
+    public void setDirector(String director) {
+        this.director = director == null ? "" : director;
     }
 }

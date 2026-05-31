@@ -1,8 +1,10 @@
 package Lab04.AimsProject.SourceCode;
 
+import Lab04.AimsProject.SourceCode.Exception.PlayerException;
+
 public class PlayableTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws PlayerException {
 
         Track track1 = new Track("Track 1", 50);
         Track track2 = new Track("Track 2", 60);

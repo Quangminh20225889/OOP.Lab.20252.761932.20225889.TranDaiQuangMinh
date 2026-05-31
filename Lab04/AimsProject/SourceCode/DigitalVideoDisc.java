@@ -1,5 +1,7 @@
 package Lab04.AimsProject.SourceCode;
 
+import Lab04.AimsProject.SourceCode.Exception.PlayerException;
+
 public class DigitalVideoDisc extends Disc implements Playable {
 
     private static int nbDigitalVideoDiscs = 0;
@@ -71,7 +73,7 @@ public class DigitalVideoDisc extends Disc implements Playable {
     }
 
     @Override
-    public void play() {
+    public void play() throws PlayerException {
 
         if (this.getLength() > 0) {
 
@@ -80,7 +82,8 @@ public class DigitalVideoDisc extends Disc implements Playable {
 
         } else {
 
-            System.out.println("ERROR: DVD length is non-positive");
+            System.err.println("ERROR: DVD length is non-positive");
+            throw new PlayerException("ERROR: DVD length is non-positive!");
         }
     }
 

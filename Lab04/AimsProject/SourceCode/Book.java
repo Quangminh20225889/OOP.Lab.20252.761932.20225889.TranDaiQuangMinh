@@ -11,6 +11,10 @@ public class Book extends Media {
     }
 
     public void addAuthor(String authorName) {
+        if (authorName == null || authorName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Author name must not be empty.");
+        }
+
         if (!authors.contains(authorName)) {
             authors.add(authorName);
             System.out.println(authorName + " has been added.");
@@ -20,6 +24,10 @@ public class Book extends Media {
     }
 
     public void removeAuthor(String authorName) {
+        if (authorName == null || authorName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Author name must not be empty.");
+        }
+
         if (authors.contains(authorName)) {
             authors.remove(authorName);
             System.out.println(authorName + " has been removed.");

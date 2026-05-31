@@ -1,6 +1,7 @@
 package Lab04.AimsProject.SourceCode;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 public abstract class Media {
 
@@ -17,10 +18,10 @@ public abstract class Media {
 
     public Media(int id, String title, String category, float cost) {
 
-        this.id = id;
-        this.title = title;
-        this.category = category;
-        this.cost = cost;
+        setId(id);
+        setTitle(title);
+        setCategory(category);
+        setCost(cost);
     }
 
     // Getter
@@ -42,18 +43,30 @@ public abstract class Media {
 
     // Setter
     public void setId(int id) {
+        if (id < 0) {
+            throw new IllegalArgumentException("Media id must be non-negative.");
+        }
+
         this.id = id;
     }
 
     public void setTitle(String title) {
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalArgumentException("Media title must not be empty.");
+        }
+
         this.title = title;
     }
 
     public void setCategory(String category) {
-        this.category = category;
+        this.category = category == null ? "" : category;
     }
 
     public void setCost(float cost) {
+        if (cost < 0) {
+            throw new IllegalArgumentException("Media cost must be non-negative.");
+        }
+
         this.cost = cost;
     }
 
@@ -70,10 +83,13 @@ public abstract class Media {
 
         Media other = (Media) obj;
 
-        if (this.title == null) {
-            return other.title == null;
-        }
+        return title != null
+                && other.title != null
+                && title.equalsIgnoreCase(other.title);
+    }
 
-        return this.title.equalsIgnoreCase(other.title);
+    @Override
+    public int hashCode() {
+        return Objects.hash(title == null ? null : title.toLowerCase());
     }
 }
